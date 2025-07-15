@@ -1,4 +1,4 @@
-# ☁️ Cloud Azure Pipelines & Terraform
+# ☁️ Azure Cloud - Azure DevOps Pipelines & Terraform
 
 Ce projet a pour objectif de déployer des ressources Azure de manière automatisée en utilisant **Terraform** et des pipelines Azure DevOps. Il permet notamment de provisionner des groupes de ressources, des comptes de stockage et des App Services via une infrastructure as code (IaC).
 
