@@ -1,62 +1,124 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# ☁️ Cloud Azure Pipelines & Terraform
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+Ce projet a pour objectif de déployer des ressources Azure de manière automatisée en utilisant **Terraform** et des pipelines Azure DevOps. Il permet notamment de provisionner des groupes de ressources, des comptes de stockage et des App Services via une infrastructure as code (IaC).
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+---
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
+## 📌 Introduction
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
-<!-- BEGIN_TF_DOCS -->
-## Requirements
+Ce projet démontre comment automatiser la gestion d'infrastructure Azure avec **Terraform**, en intégrant le déploiement via **Azure DevOps Pipelines**.  
+L'objectif est de faciliter la création, la mise à jour et la suppression d'environnements cloud reproductibles et maintenables dans le temps.
 
-| Name | Version |
-|------|---------|
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 3.38.0 |
+---
 
-## Providers
+## 🚀 Getting Started
 
-| Name | Version |
-|------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.38.0 |
+### 📥 Installation et Prérequis
 
-## Modules
+Avant de commencer, assurez-vous d'avoir installé :
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_appservice"></a> [appservice](#module\_appservice) | ./modules/appservice | n/a |
-| <a name="module_storage"></a> [storage](#module\_storage) | ./modules/storage | n/a |
+- [Terraform](https://developer.hashicorp.com/terraform/downloads) `>= 1.5.0`
+- Un compte Azure avec les droits nécessaires pour créer des ressources
+- Azure CLI `>= 2.45.0`
+- Un environnement Azure DevOps (pour les pipelines)
 
-## Resources
+### 📦 Dépendances Terraform
 
-| Name | Type |
-|------|------|
-| [azurerm_resource_group.rg](https://registry.terraform.io/providers/hashicorp/azurerm/3.38.0/docs/resources/resource_group) | resource |
+| Provider | Version  |
+|:------------|:------------|
+| `azurerm` | `3.38.0` |
 
-## Inputs
+### 📚 Modules
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_LOCATION"></a> [LOCATION](#input\_LOCATION) | The location/region where the resource group is created. | `string` | `"westeurope"` | no |
-| <a name="input_container_name"></a> [container\_name](#input\_container\_name) | The name of the container. | `string` | n/a | yes |
-| <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The name of the resource group. | `string` | n/a | yes |
-| <a name="input_storage_account_name"></a> [storage\_account\_name](#input\_storage\_account\_name) | The name of the storage account. | `string` | n/a | yes |
+| Nom | Source | Version |
+|:-----|:---------|:------------|
+| `appservice` | `./modules/appservice` | N/A |
+| `storage`    | `./modules/storage`    | N/A |
 
-## Outputs
+---
 
-| Name | Description |
-|------|-------------|
-| <a name="output_appservice"></a> [appservice](#output\_appservice) | n/a |
-| <a name="output_storage_account_tier"></a> [storage\_account\_tier](#output\_storage\_account\_tier) | n/a |
-<!-- END_TF_DOCS -->
+## 📝 Usage
+
+1. Clonez le dépôt :
+   ```bash
+   git clone https://github.com/NAOUI1/Cloud-Azure-PipelinesAzureDevOps-Terraform.git
+   cd Cloud-Azure-PipelinesAzureDevOps-Terraform
+Configurez vos variables dans variables.auto.tfvars ou en ligne de commande.
+
+Initialisez Terraform :
+
+bash
+Copier
+Modifier
+terraform init
+Vérifiez le plan d'exécution :
+
+bash
+Copier
+Modifier
+terraform plan
+Appliquez l'infrastructure :
+
+bash
+Copier
+Modifier
+terraform apply
+⚙️ Variables
+Nom	Description	Type	Défaut	Obligatoire
+LOCATION	La région Azure pour déployer les ressources	string	westeurope	Non
+resource_group_name	Le nom du groupe de ressources	string	N/A	Oui
+storage_account_name	Le nom du compte de stockage	string	N/A	Oui
+container_name	Le nom du container	string	N/A	Oui
+
+📤 Outputs
+Nom	Description
+appservice	N/A
+storage_account_tier	N/A
+
+🧪 Build & Test
+Pour tester votre configuration :
+
+bash
+Copier
+Modifier
+terraform validate
+terraform plan
+Un pipeline Azure DevOps peut aussi être configuré pour déclencher automatiquement ces étapes à chaque push.
+
+🤝 Contribuer
+Les contributions sont les bienvenues !
+Merci de suivre ces étapes :
+
+Fork le projet
+
+Créez votre branche de feature :
+
+bash
+Copier
+Modifier
+git checkout -b feature/NouvelleFeature
+Commitez vos modifications :
+
+bash
+Copier
+Modifier
+git commit -m "Ajout d'une nouvelle fonctionnalité"
+Poussez votre branche :
+
+bash
+Copier
+Modifier
+git push origin feature/NouvelleFeature
+Ouvrez une Pull Request
+
+📌 Notes
+Pensez à vérifier la version des providers et modules avant tout déploiement en production.
+
+Ce projet peut être étendu pour inclure des bases de données, des API Management ou d'autres services Azure.
+
+📚 Références
+Terraform Azure Provider Documentation
+
+Azure DevOps Pipelines Documentation
+
+Terraform Module Documentation
